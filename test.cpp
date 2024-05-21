@@ -1934,6 +1934,25 @@ public:
 void func(Person p) {
 
 };
+//二分查找算法
+int BinarySearch(int start, int end, int* a, int target)
+{
+	if (start > end) {
+		return -100;
+	}
+	int mid = (start + end) / 2;
+	if (a[mid] == target) {
+		return mid;
+	}
+	else if (target < a[mid])
+	{
+		return BinarySearch(start, mid-1, a, target);
+	}
+	else
+	{
+		return BinarySearch(mid+1, end, a, target);
+	}
+}
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -1946,6 +1965,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	_CrtSetDbgFlag(tmpFlag);
 
+	std::vector<int> binaryarray = { 1,3, 6, 9, 10, 12, 18 };
+	int binaryarray_index = BinarySearch(0, binaryarray.size(), binaryarray.data(), 3);
 
 	int array[] = { 0,3,4,5,7,9,8,3,2,4,9,0,3,9,5,8,0,3,8,9,5,3,5 };
 
