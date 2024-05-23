@@ -1954,6 +1954,60 @@ int BinarySearch(int start, int end, int* a, int target)
 	}
 }
 
+void insert_sort_test(int* a, int size)
+{
+	for (int i = 1; i < size; ++i)
+	{
+		for (int j = i - 1; j >= 0; j--)
+		{
+			if (a[j] > a[i])
+			{
+				int temp = a[j];
+				a[j] = a[i];
+				a[i] = temp;
+				i = j;
+			}
+			else {
+				break;
+			}
+		}
+	}
+}
+//ÓÒÏÂ½Ç¿ªÊ¼ÂÝÐý±éÀú¾ØÕó
+void SpiralMatrix(vector<vector<int>>& matrix)
+{
+	int col = matrix.size();
+	int row = matrix[0].size();
+	int left = 0;
+	int right = row - 1;
+	int top = 0;
+	int bottom = col - 1;
+	while (left <= right && top <= bottom)
+	{
+		for (int i = right; i >= left; --i)
+		{
+			cout << matrix[bottom][i] << " ";
+		}
+		--bottom;
+		for (int j = bottom; j >= top; --j)
+		{
+			cout << matrix[j][left] << " ";
+		}
+		++left;
+		for (int k = left; k <= right; ++k)
+		{
+			cout << matrix[top][k] << " ";
+		}
+		++top;
+		for (int l = top; l <= bottom; ++l)
+		{
+			cout << matrix[l][right] << " ";
+		}
+		--right;
+	}
+}
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	MyClass mc = MyClass();
@@ -1970,8 +2024,14 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	int array[] = { 0,3,4,5,7,9,8,3,2,4,9,0,3,9,5,8,0,3,8,9,5,3,5 };
 
+	insert_sort_test(array, sizeof(array) / sizeof(int));
+
 	//²åÈëÅÅÐò
 	insert_sort(array, sizeof(array) / sizeof(int));
+
+	//vector<vector<int>> testMatrix = { {0,1,2,3}, {4,5,6,7}, {8,9,10,11}, {12,13,14,15} };
+	vector<vector<int>> testMatrix = { {0,1,2}, {5,6,7}, {8,9,10}, {12,13,14}, {17,18,19} };
+	SpiralMatrix(testMatrix);
 
 	//¹é²¢ÅÅÐò
 	int merge_array[] = { 9, 0, 3, 5, 7, 9, 0, 5, 8, 9, 0, 2, 3, 4, 5, 0, 3, 7, 3, 9, 0, 1, 4, 0, 9, 1, 2, 3, 9, 0, 4, 0, 5, 8, 0, 2, 3, 4, 5, 8, 0, 3, 9, 4, 8, 5, 0 };
